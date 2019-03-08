@@ -16,7 +16,7 @@ def about():
 
 @app.route('/articles')
 def articles():
-    return render_templat('articles.html'. articles = Articles)
+    return render_template('articles.html', articles = Articles)
 
 if __name__ == '__main__':
     app.run(debug=True)
