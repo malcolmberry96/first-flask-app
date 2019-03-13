@@ -10,7 +10,7 @@ app = Flask(__name__)
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = 'YourRootPassword'
-app.config['MYSQL_DB'] = 'firstflaskapp'
+app.config['MYSQL_DB'] = 'myflaskapp'
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 # init MySQL 
 
@@ -57,7 +57,7 @@ def register ():
         # Create cursor 
         cur = mysql.connection.cursor()
 
-        cur.execute("INSERT INTO users(name, email, username, password) VALUES(%s, %s, %s, %s)", (name, email, username, password))
+        cur.execute("INSERT INTO users2(name, email, username, password) VALUES(%s, %s, %s, %s)", (name, email, username, password))
 
         mysql.connection.commit()
 
@@ -65,11 +65,12 @@ def register ():
 
         flash('You are now registered and can login', 'success')
 
-        redirect(url_for('index'))
+        return redirect(url_for('login'))
 
 
         return render_template('register.html')
     return render_template('register.html', form=form)
 
 if __name__ == '__main__':
+    app.secret_key='secret123'
     app.run(debug=True)
