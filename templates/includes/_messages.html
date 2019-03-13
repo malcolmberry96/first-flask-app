@@ -1,0 +1,7 @@
+{% with messages %}
+ {% if messages %}
+        {% for category, message in message %}
+            <div class="alert alert-{{ category }}">{{ messages }}</li>
+        {% endfor %}
+    {% endif %}
+{% endwith %}

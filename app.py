@@ -57,7 +57,16 @@ def register ():
         # Create cursor 
         cur = mysql.connection.cursor()
 
-        cur.execute("INSERT INTO users(name, email, username, password) VALUES()")
+        cur.execute("INSERT INTO users(name, email, username, password) VALUES(%s, %s, %s, %s)", (name, email, username, password))
+
+        mysql.connection.commit()
+
+        cur.close()
+
+        flash('You are now registered and can login', 'success')
+
+        redirect(url_for('index'))
+
 
         return render_template('register.html')
     return render_template('register.html', form=form)
