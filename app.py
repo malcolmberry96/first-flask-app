@@ -86,14 +86,14 @@ def login():
         #Get user by username 
         result = cur.execute("SELECT * FROM users WHERE USERNAME = %s", [username])
 
-        if result > 0 
+        if result > 0:
             #Get stored hash 
             data = cur.fetchone()
             password = data['password']
 
             # Compare password
 
-            if sha256_crypt.verify(password_candidate, password)
+            if sha256_crypt.verify(password_candidate, password):
                 app.logger.info('PASSWORD MATCHED')
             else: 
                 app.logger.inf('NO USER')
