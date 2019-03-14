@@ -45,6 +45,7 @@ class RegisterForm(Form):
     ])
     confirm = PasswordField('Confirm Password')
 
+#Register
 @app.route('/register', methods=['GET', 'POST'])
 def register ():
     form = RegisterForm(request.form)
@@ -72,7 +73,6 @@ def register ():
     return render_template('register.html', form=form)
 
 #User Login 
-
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -112,9 +112,17 @@ def login():
 
     return render_template('login.html')
 
+#Dashboard
 @app.route('/dashboard')
 def dashboard():
     return render_template('dashboard.html')
+
+#LogOut 
+@app.route('/logout')
+def logout():
+    session.clear()
+    flash('You are now logged out', 'success')
+    return redirect(url_for('login'))
 
 if __name__ == '__main__':
     app.secret_key='secret123'
