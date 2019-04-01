@@ -70,7 +70,6 @@ def register ():
         return redirect(url_for('login'))
 
 
-        return render_template('register.html')
     return render_template('register.html', form=form)
 
 #User Login 
@@ -122,7 +121,7 @@ def is_logged_in(f):
         else: 
             flash('Unauthorized, Please login', 'danger')
             return redirect(url_for('login'))
-        return wrap
+    return wrap
 
 #Logout 
 @app.route('/logout')
