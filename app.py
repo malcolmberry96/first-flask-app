@@ -36,6 +36,7 @@ def articles():
 def article(id):
     return render_template('article.html', id=id)
 
+#Register Form Class 
 class RegisterForm(Form): 
     name = StringField ('Name', [validators.Length(min=1, max=50)])
     username = StringField('Username', [validators.Length(min=4, max=25)])
@@ -135,6 +136,29 @@ def logout():
 @is_logged_in
 def dashboard():
     return render_template('dashboard.html')
+
+#Article Form Class
+class ArticleForm(Form): 
+    title = StringField ('Name', [validators.Length(min=1, max=200)])
+    body = TextAreaField('Username', [validators.Length(min=30,)])
+
+@app.route('/add_article', methods=['GET', 'POST'])
+@is_logged_in
+def add_article():
+    form = ArticleForm(request.form)
+    if request.mothod == 'POST' and form.validate():
+        title = form.title.data
+        body = form.body.data
+
+        #Create Cursor
+        cur = mysql.connection.cursor()
+
+        #Execute
+        cur.execute("INSERT INTO articles(title, body, author") V
+   
+
+    
+
 
 if __name__ == '__main__':
     app.secret_key='secret123'
