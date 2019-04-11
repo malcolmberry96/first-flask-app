@@ -154,7 +154,7 @@ def add_article():
         cur = mysql.connection.cursor()
 
         #Execute
-        cur.execute("INSERT INTO articles(title, body, author") V
+        cur.execute("INSERT INTO articles(title, body, author) VALUES(%s, %s, %s), (title, body, session[''username]") 
    
 
     
