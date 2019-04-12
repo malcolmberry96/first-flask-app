@@ -154,12 +154,17 @@ def add_article():
         cur = mysql.connection.cursor()
 
         #Execute
-        cur.execute("INSERT INTO articles(title, body, author) VALUES(%s, %s, %s), (title, body, session[''username]") 
+        cur.execute("INSERT INTO articles(title, body, author) VALUES(%s, %s, %s), (title, body, session['username']) 
    
+        #Commit to DB
+        mysql.connection.commit()
 
-    
+        #Close Connection 
+        cur.close
 
+        flash('Article Created', 'success')
 
+        return redirect(url_for('dashboard'))
 if __name__ == '__main__':
     app.secret_key='secret123'
     app.run(debug=True)
